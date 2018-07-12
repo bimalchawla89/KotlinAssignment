@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">SuncorpAssignment</string>
+
+    <string name="unknown_error">An unknown error occurred.</string>
+</resources>
