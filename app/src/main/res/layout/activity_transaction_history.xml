@@ -12,10 +12,6 @@
             type="android.support.v7.widget.LinearLayoutManager" />
 
         <variable
-            name="dividerItemDecoration"
-            type="android.support.v7.widget.DividerItemDecoration" />
-
-        <variable
             name="progressVisibility"
             type="Integer" />
     </data>

@@ -36,7 +36,9 @@ class TransactionPresenter(transactionView: TransactionView) : BasePresenter<Tra
                 .subscribeOn(Schedulers.io())
                 .doOnTerminate { view.hideLoading() }
                 .subscribe(
-                        { transactionList -> view.updateTransactions(transactionList) },
+                        { transactionList ->
+                            view.updateTransactions(transactionList.sortedByDescending { it.effectiveDate })
+                        },
                         { view.showError(R.string.unknown_error) }
                 )
     }

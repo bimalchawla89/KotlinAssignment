@@ -2,7 +2,6 @@ package com.suncorpassignment.ui.transaction
 
 import android.databinding.DataBindingUtil
 import android.os.Bundle
-import android.support.v7.widget.DividerItemDecoration
 import android.support.v7.widget.LinearLayoutManager
 import android.view.View
 import android.widget.Toast
@@ -31,7 +30,6 @@ class TransactionHistoryActivity : BaseActivity<TransactionPresenter>(), Transac
         binding = DataBindingUtil.setContentView(this, R.layout.activity_transaction_history)
         binding.adapter = transactionsAdapter
         binding.layoutManager = LinearLayoutManager(this)
-        binding.dividerItemDecoration = DividerItemDecoration(this, LinearLayoutManager.VERTICAL)
 
         presenter.onViewCreated()
     }
@@ -42,6 +40,9 @@ class TransactionHistoryActivity : BaseActivity<TransactionPresenter>(), Transac
     }
 
     override fun updateTransactions(transactions: List<Transaction>) {
+        val totalPriceInList1: Double = transactions.map { it.amount }.sum()
+        println("sum(): " + totalPriceInList1)
+
         transactionsAdapter.updateTransactions(transactions)
     }
 
