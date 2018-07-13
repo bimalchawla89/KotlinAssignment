@@ -4,6 +4,7 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import com.suncorpassignment.R
 import com.suncorpassignment.databinding.ItemTransactionBinding
@@ -19,8 +20,10 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
      * The list of posts of the adapter
      */
     private var transactions: List<Transaction> = listOf()
+    lateinit var listener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
+        setOnItemClickListener(listener)
         val layoutInflater = LayoutInflater.from(context)
         val binding: ItemTransactionBinding = DataBindingUtil.inflate(layoutInflater, R.layout.item_transaction, parent, false)
         return TransactionViewHolder(binding)
@@ -31,7 +34,10 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
     }
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
-        holder?.bind(transactions[position])
+        holder.bind(transactions[position])
+        holder.binding.transactionLayout.setOnClickListener({
+            listener.onClick(it, transactions[position])
+        })
     }
 
     /**
@@ -43,11 +49,19 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
         notifyDataSetChanged()
     }
 
+    interface OnItemClickListener {
+        fun onClick(view: View, transaction: Transaction)
+    }
+
+    fun setOnItemClickListener(listener: OnItemClickListener) {
+        this.listener = listener
+    }
+
     /**
      * The ViewHolder of the adapter
      * @property binding the DataBinging object for Transaction item
      */
-    class TransactionViewHolder(private val binding: ItemTransactionBinding) : RecyclerView.ViewHolder(binding.root) {
+    class TransactionViewHolder(val binding: ItemTransactionBinding) : RecyclerView.ViewHolder(binding.root) {
         /**
          * Binds a transaction into the view
          */

@@ -3,6 +3,7 @@ package com.suncorpassignment.ui.base
 import com.suncorpassignment.injections.component.DaggerPresenterInjector
 import com.suncorpassignment.injections.component.PresenterInjector
 import com.suncorpassignment.injections.module.ContextModule
+import com.suncorpassignment.injections.module.DaoModule
 import com.suncorpassignment.injections.module.NetworkModule
 import com.suncorpassignment.ui.transaction.TransactionPresenter
 
@@ -20,6 +21,7 @@ abstract class BasePresenter<out V : BaseView>(protected val view: V) {
             .baseView(view)
             .contextModule(ContextModule)
             .networkModule(NetworkModule)
+            .daoModule(DaoModule)
             .build()
 
     init {

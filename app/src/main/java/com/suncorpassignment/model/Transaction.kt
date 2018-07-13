@@ -1,5 +1,9 @@
 package com.suncorpassignment.model
 
+import android.arch.persistence.room.ColumnInfo
+import android.arch.persistence.room.Entity
+import android.arch.persistence.room.PrimaryKey
+
 /**
  * Model class which provides a model for transaction
  * @constructor Sets all properties of the particular transaction
@@ -8,4 +12,9 @@ package com.suncorpassignment.model
  * @property amount the amount of the transaction
  * @property effectiveDate the date of the transaction
  */
-data class Transaction(val id: Int, val description: String, val amount: Double, val effectiveDate: String)
+@Entity(tableName = "transactionData")
+data class Transaction(@ColumnInfo(name = "id")
+                       @PrimaryKey(autoGenerate = true) val id: Int,
+                       @ColumnInfo(name = "transaction_description") val description: String,
+                       @ColumnInfo(name = "transaction_amount") val amount: Double,
+                       @ColumnInfo(name = "transaction_date") val effectiveDate: String)

@@ -14,6 +14,10 @@
         <variable
             name="progressVisibility"
             type="Integer" />
+
+        <variable
+            name="total"
+            type="Float" />
     </data>
 
     <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -32,15 +36,27 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/transactions"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:adapter="@{adapter}"
-            app:layoutManager="@{layoutManager}"
-            app:layout_constraintBottom_toBottomOf="parent"
+        <TextView
+            android:id="@+id/total_balance"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/eight"
+            android:gravity="center_horizontal"
+            android:text='@{"Total Balance : " + Float.toString(total)}'
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/transactions"
+            android:layout_width="@dimen/zero"
+            android:layout_height="wrap_content"
+            app:adapter="@{adapter}"
+            app:layoutManager="@{layoutManager}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/total_balance" />
+
     </android.support.constraint.ConstraintLayout>
 </layout>
