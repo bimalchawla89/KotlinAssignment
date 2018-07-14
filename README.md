@@ -151,18 +151,8 @@ Binding the TransactionAdapter as adapter to RecyclerView by using databinding.
 
 ## Build Info
 
-Android Studio - 3.1.3
-Compile SDK - 28
-MinSDK - 20, Target - 28
+Android Studio - 3.1.3, Compile SDK - 28, MinSDK - 20, Target - 28
 
 ## Libraries Used
 
-Android Support Libraries
-Dagger 2
-Retrofit
-RecyclerView
-CardView
-Room
-LiveData
-RxJava
-RxAndroid
+Android Support Libraries, Dagger 2, Retrofit, RecyclerView, CardView, Room, LiveData, RxJava, RxAndroid
