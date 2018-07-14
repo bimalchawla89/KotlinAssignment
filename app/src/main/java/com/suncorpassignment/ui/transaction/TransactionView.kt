@@ -10,7 +10,7 @@ import com.suncorpassignment.ui.base.BaseView
 interface TransactionView : BaseView {
     /**
      * Updates the previous transactions by the specified ones
-     * @param transactions the list of transactions that will replace existing ones
+     * @param transactions the list of transactions that will replace existing ones if any
      */
     fun updateTransactions(transactions: List<Transaction>)
 

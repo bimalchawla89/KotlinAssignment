@@ -17,7 +17,7 @@ import com.suncorpassignment.model.Transaction
 class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder>() {
 
     /**
-     * The list of posts of the adapter
+     * The list of transactions of the adapter
      */
     private var transactions: List<Transaction> = listOf()
     lateinit var listener: OnItemClickListener
@@ -35,14 +35,15 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
 
     override fun onBindViewHolder(holder: TransactionViewHolder, position: Int) {
         holder.bind(transactions[position])
+        //setting list item click listener
         holder.binding.transactionLayout.setOnClickListener({
             listener.onClick(it, transactions[position])
         })
     }
 
     /**
-     * Updates the list of posts of the adapter
-     * @param transactions the new list of posts of the adapter
+     * Updates the list of transactions of the adapter
+     * @param transactions the new list of transactions of the adapter
      */
     fun updateTransactions(transactions: List<Transaction>) {
         this.transactions = transactions

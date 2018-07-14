@@ -5,6 +5,10 @@ import android.arch.persistence.room.Insert
 import android.arch.persistence.room.OnConflictStrategy.REPLACE
 import android.arch.persistence.room.Query
 
+/**
+ * It provides query mechanism to interact with database tables.
+ * Queries like insert and select from table
+ */
 @Dao
 interface TransactionDao {
 

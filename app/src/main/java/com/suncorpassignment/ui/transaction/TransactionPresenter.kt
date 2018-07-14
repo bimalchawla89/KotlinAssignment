@@ -1,7 +1,5 @@
 package com.suncorpassignment.ui.transaction
 
-import android.arch.lifecycle.MutableLiveData
-import android.arch.lifecycle.Observer
 import com.suncorpassignment.R
 import com.suncorpassignment.model.Transaction
 import com.suncorpassignment.model.TransactionDao
@@ -17,9 +15,12 @@ import javax.inject.Inject
  * The Presenter that will present the Transaction view.
  * @param transactionView the Transaction view to be presented by the presenter
  * @property ApiCallInterface the API interface implementation
+ * @property transactionDao the dao for database implementation
  * @property subscription the subscription to the API call
  */
 class TransactionPresenter(transactionView: TransactionView) : BasePresenter<TransactionView>(transactionView) {
+
+    //injecting required api interface and database dao
     @Inject
     lateinit var apiCallInterface: ApiCallInterface
     @Inject
@@ -30,8 +31,10 @@ class TransactionPresenter(transactionView: TransactionView) : BasePresenter<Tra
     private val mutableTransactionList: MutableLiveData<List<Transaction>> = MutableLiveData()
 
     override fun onViewCreated() {
+        //initializing observer over transaction list
         val transactionObserver = Observer<List<Transaction>> { transactionList ->
             if (transactionList != null) {
+                //updating view as data fetched
                 view.updateTransactions(transactionList.sortedByDescending { it.effectiveDate })
             }
         }
@@ -41,12 +44,12 @@ class TransactionPresenter(transactionView: TransactionView) : BasePresenter<Tra
     }
 
     /**
-     * Loads the posts from the API and presents them in the view when retrieved, or showss error if
-     * any.
+     * Loads the transactions from the Database/API when retrieved, or shows error if any.
      */
     fun loadTransactions() {
-        view.showLoading()
+        view.showLoading()          // showing the loading indicator
 
+        //first try to fetch data from database if found otherwise from api call
         subscription = Observable.fromCallable({ transactionDao.getAll() })
                 .flatMap { transactionList -> if (transactionList.isNotEmpty()) Observable.just(transactionList) else saveApiResponse() }
                 .observeOn(AndroidSchedulers.mainThread())
@@ -60,8 +63,8 @@ class TransactionPresenter(transactionView: TransactionView) : BasePresenter<Tra
     }
 
     /**
-     * Load the posts from the API and store them in the database.
-     * @return an Observable for the list of Post retrieved from API
+     * Load the transactions from the API and store them in the database.
+     * @return an Observable for the list of Transaction retrieved from API
      */
     private fun saveApiResponse(): Observable<List<Transaction>> {
         return apiCallInterface.getTransactions()
@@ -69,6 +72,6 @@ class TransactionPresenter(transactionView: TransactionView) : BasePresenter<Tra
     }
 
     override fun onViewDestroyed() {
-        subscription?.dispose()
+        subscription?.dispose()         //Destroying the subscription of observable
     }
 }

@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView
 import com.suncorpassignment.ui.transaction.TransactionAdapter
 
 /**
- * Sets an adapter to a RecyclerView (to be used in view with one RecyclerView)
+ * Sets an adapter to a RecyclerView
  * @param view the RecyclerView on which to set the adapter
  * @param adapter the adapter to set to the RecyclerView
  */
@@ -15,7 +15,7 @@ fun setAdapter(view: RecyclerView, adapter: TransactionAdapter) {
 }
 
 /**
- * Sets a LayoutManager to a RecyclerView (to be used in view with one RecyclerView)
+ * Sets a LayoutManager to a RecyclerView
  * @param view the RecyclerView on which to set the LayoutManager
  * @param layoutManager the LayoutManager to set to the RecyclerView
  */

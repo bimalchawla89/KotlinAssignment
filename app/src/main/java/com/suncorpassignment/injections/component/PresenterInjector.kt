@@ -27,7 +27,7 @@ interface PresenterInjector {
 
         fun networkModule(networkModule: NetworkModule): Builder
         fun contextModule(contextModule: ContextModule): Builder
-        fun daoModule(databaseModule: DaoModule): Builder
+        fun daoModule(daoModule: DaoModule): Builder
 
         @BindsInstance
         fun baseView(baseView: BaseView): Builder

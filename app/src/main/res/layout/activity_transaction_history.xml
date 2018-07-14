@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/eight"
             android:gravity="center_horizontal"
-            android:text='@{"Total Balance : " + Float.toString(total)}'
+            android:text='@{"Total Balance : " + Float.toString(safeUnbox(total))}'
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
