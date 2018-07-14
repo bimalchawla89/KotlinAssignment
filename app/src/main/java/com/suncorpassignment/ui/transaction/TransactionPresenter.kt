@@ -1,5 +1,7 @@
 package com.suncorpassignment.ui.transaction
 
+import android.arch.lifecycle.MutableLiveData
+import android.arch.lifecycle.Observer
 import com.suncorpassignment.R
 import com.suncorpassignment.model.Transaction
 import com.suncorpassignment.model.TransactionDao
@@ -23,6 +25,7 @@ class TransactionPresenter(transactionView: TransactionView) : BasePresenter<Tra
     //injecting required api interface and database dao
     @Inject
     lateinit var apiCallInterface: ApiCallInterface
+
     @Inject
     lateinit var transactionDao: TransactionDao
 
