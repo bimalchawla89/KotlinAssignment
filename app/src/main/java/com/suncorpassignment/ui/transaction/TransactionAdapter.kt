@@ -1,5 +1,6 @@
 package com.suncorpassignment.ui.transaction
 
+import android.app.AlertDialog
 import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
@@ -20,10 +21,8 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
      * The list of transactions of the adapter
      */
     private var transactions: List<Transaction> = listOf()
-    lateinit var listener: OnItemClickListener
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TransactionViewHolder {
-        setOnItemClickListener(listener)
         val layoutInflater = LayoutInflater.from(context)
         val binding: ItemTransactionBinding = DataBindingUtil.inflate(layoutInflater, R.layout.item_transaction, parent, false)
         return TransactionViewHolder(binding)
@@ -37,7 +36,7 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
         holder.bind(transactions[position])
         //setting list item click listener
         holder.binding.transactionLayout.setOnClickListener({
-            listener.onClick(it, transactions[position])
+            showDialog(transactions[position])
         })
     }
 
@@ -54,10 +53,6 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
         fun onClick(view: View, transaction: Transaction)
     }
 
-    fun setOnItemClickListener(listener: OnItemClickListener) {
-        this.listener = listener
-    }
-
     /**
      * The ViewHolder of the adapter
      * @property binding the DataBinging object for Transaction item
@@ -70,5 +65,26 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
             binding.transaction = transaction
             binding.executePendingBindings()
         }
+    }
+
+    /**
+     * Showing alert dialog displaing full details of current item clicked
+     * @property transaction the model object containing details for particular transaction
+     */
+    private fun showDialog(transaction: Transaction) {
+        // Initialize a new instance of
+        val builder = AlertDialog.Builder(context)
+
+        // Set the alert dialog title
+        builder.setTitle(Integer.toString(transaction.id))
+
+        // Display a message on alert dialog
+        builder.setMessage("Transaction of " + transaction.amount + " done on " + transaction.effectiveDate + " at " + transaction.description)
+
+        // Finally, make the alert dialog using builder
+        val dialog: AlertDialog = builder.create()
+
+        // Display the alert dialog on app interface
+        dialog.show()
     }
 }

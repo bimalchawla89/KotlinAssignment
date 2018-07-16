@@ -1,6 +1,5 @@
 package com.suncorpassignment.ui.transaction
 
-import android.app.AlertDialog
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
@@ -34,27 +33,6 @@ class TransactionHistoryActivity : BaseActivity<TransactionPresenter>(), Transac
 
         presenter.onViewCreated()
 
-        //recycler view item click event
-        transactionsAdapter.setOnItemClickListener(object : TransactionAdapter.OnItemClickListener {
-            override fun onClick(view: View, transaction: Transaction) {
-
-                // Initialize a new instance of
-                val builder = AlertDialog.Builder(this@TransactionHistoryActivity)
-
-                // Set the alert dialog title
-                builder.setTitle(Integer.toString(transaction.id))
-
-                // Display a message on alert dialog
-                builder.setMessage("Transaction of " + transaction.amount + " done on " + transaction.effectiveDate + " at " + transaction.description)
-
-                // Finally, make the alert dialog using builder
-                val dialog: AlertDialog = builder.create()
-
-                // Display the alert dialog on app interface
-                dialog.show()
-
-            }
-        })
     }
 
     override fun onDestroy() {

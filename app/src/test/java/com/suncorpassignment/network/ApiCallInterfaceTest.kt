@@ -1,5 +1,9 @@
 package com.suncorpassignment.network
 
+import android.support.test.runner.AndroidJUnit4
+import com.suncorpassignment.testing.DependencyProvider
+import okhttp3.mockwebserver.MockResponse
+import okhttp3.mockwebserver.MockWebServer
 import org.junit.After
 import org.junit.Assert
 import org.junit.Before
@@ -10,7 +14,7 @@ import java.io.IOException
 /**
  * Tests for [ApiCallInterface]
  */
-@RunWith(RobolectricTestRunner::class)
+@RunWith(AndroidJUnit4::class)
 class ApiCallInterfaceTest {
 
     private lateinit var apiCallInterfaceService: ApiCallInterface
@@ -44,8 +48,8 @@ class ApiCallInterfaceTest {
                 .run {
                     assertNoErrors()
                     assertValueCount(1)
-                    Assert.assertEquals(values()[0].size, 10)
-                    Assert.assertEquals(values()[0][0].description, "Sent to Italy")
+                    Assert.assertEquals(values()[0].size, 5)
+                    Assert.assertEquals(values()[0][0].description, "Opal recharge")
                     Assert.assertEquals(values()[0][0].id, 1)
                 }
     }

@@ -7,12 +7,15 @@ import org.junit.After
 import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
+import org.robolectric.RobolectricTestRunner
 
-@RunWith(AndroidJUnit4::class)
+@RunWith(RobolectricTestRunner::class)
 class TransactionDaoTest {
 
+    //    given("Dao for Database to query with tables") {
     lateinit var transactionDao: TransactionDao
     lateinit var database: TransactionDatabase
+
 
     @Before
     fun setup() {
@@ -28,11 +31,16 @@ class TransactionDaoTest {
 
     @Test
     fun testInsertedAndRetrievedUsersMatch() {
-        val transactions = listOf(Transaction(1, "Restaurent payment", 100.95, "2018-07-14T10:23:12.123Z"))
+//            on("inserting in and fetching via dao from database") {
+
+        val transactions = listOf(Transaction(1, "Restaurant payment", 100.95, "2018-07-14T10:23:12.123Z"))
         transactionDao.insert(*transactions.toTypedArray())
 
         val allTransactions = transactionDao.getAll()
+//                it("Should return the addition between first and second number") {
         assertEquals(transactions, allTransactions)
+//                }
+//            }
     }
 
     @Test
@@ -74,4 +82,45 @@ class TransactionDaoTest {
         assertEquals(expectedTransactions, allTransactions)
     }
 
+
 }
+
+//class TransactionDaoTest : Spek({
+//
+//    given("Dao for Database to query with tables") {
+//        val transactionDao: TransactionDao
+//        val database: TransactionDatabase
+//
+//        on("Addition") {
+//            val sum = calculator.sum(4, 4)
+//
+//            it("Should return the addition between first and second number") {
+//                assertEquals(8, sum)
+//            }
+//        }
+//
+//        on("Subtraction") {
+//            val subtract = calculator.subtract(10, 3)
+//
+//            it("Should return the subtraction between first and second number") {
+//                assertEquals(7, subtract)
+//            }
+//        }
+//
+//        on("Multiplying") {
+//            val multiple = calculator.multiple(3, 3)
+//
+//            it("Should return the multiplying between first and second number") {
+//                assertEquals(9, multiple)
+//            }
+//        }
+//
+//        on("Dividing") {
+//            val divide = calculator.divide(20, 2)
+//
+//            it("Should return the dividing between first and second number") {
+//                assertEquals(10, divide)
+//            }
+//        }
+//    }
+//})
