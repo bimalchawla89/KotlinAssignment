@@ -5,7 +5,6 @@ import android.content.Context
 import android.databinding.DataBindingUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import com.suncorpassignment.R
 import com.suncorpassignment.databinding.ItemTransactionBinding
@@ -47,10 +46,6 @@ class TransactionAdapter(private val context: Context) : RecyclerView.Adapter<Tr
     fun updateTransactions(transactions: List<Transaction>) {
         this.transactions = transactions
         notifyDataSetChanged()
-    }
-
-    interface OnItemClickListener {
-        fun onClick(view: View, transaction: Transaction)
     }
 
     /**
