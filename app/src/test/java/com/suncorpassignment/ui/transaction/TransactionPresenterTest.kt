@@ -1,5 +1,6 @@
 package com.suncorpassignment.ui.transaction
 
+import android.support.test.InstrumentationRegistry
 import android.support.test.runner.AndroidJUnit4
 import com.suncorpassignment.model.Transaction
 import com.suncorpassignment.model.TransactionDao
@@ -31,6 +32,8 @@ class TransactionPresenterTest {
 //        val context = InstrumentationRegistry.getTargetContext()
         MockitoAnnotations.initMocks(this)
         transactionPresenter = TransactionPresenter(mockView)
+        TransactionDatabase.TEST_MODE = true
+        transactionDao = TransactionDatabase.getInstance(InstrumentationRegistry.getTargetContext())
 //        database = Room.inMemoryDatabaseBuilder(context, TransactionDatabase::class.java).build()
 //        transactionDao = database.transactionDao()
     }

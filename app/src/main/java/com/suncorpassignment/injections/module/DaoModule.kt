@@ -4,6 +4,7 @@ import android.arch.persistence.room.Room
 import android.content.Context
 import com.suncorpassignment.model.TransactionDao
 import com.suncorpassignment.model.TransactionDatabase
+import com.suncorpassignment.utils.DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 
@@ -12,8 +13,6 @@ import dagger.Provides
  */
 @Module(includes = [(ContextModule::class)])
 object DaoModule {
-
-    private const val DATABASE_NAME: String = "Transaction"
 
     /**
      * Returns the database of the application.
