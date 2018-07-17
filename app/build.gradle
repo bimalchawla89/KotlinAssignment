@@ -13,9 +13,9 @@ android {
         enabled = true
     }
 
-    kapt {
-        useBuildCache = true
-    }
+//    kapt {
+//        useBuildCache = true
+//    }
 
     testOptions {
         unitTests.returnDefaultValues = true
